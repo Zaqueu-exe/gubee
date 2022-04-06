@@ -7,12 +7,9 @@ public class Conta {
     private double saldo;
 
     public Conta(int account, String titular, double saldo){
-        if(saldo < 0.0){
-            throw new IllegalArgumentException("Saldo invalido");
-        }
         this.account = account;
         this.holder = titular;
-        this.saldo = saldo;
+        this.depositar(saldo);
     }
 
     public Conta(int account, String titular) {
