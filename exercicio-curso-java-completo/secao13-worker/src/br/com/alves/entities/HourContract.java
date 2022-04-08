@@ -2,12 +2,12 @@ package br.com.alves.entities;
 
 import java.util.Date;
 
-public class HourContratc {
+public class HourContract {
     private Date date;
     private Double valuePerHour;
     private Integer hours;
 
-    public HourContratc(Date date, Double valuePerHour, Integer hours) {
+    public HourContract(Date date, Double valuePerHour, Integer hours) {
         this.date = date;
         this.valuePerHour = valuePerHour;
         this.hours = hours;

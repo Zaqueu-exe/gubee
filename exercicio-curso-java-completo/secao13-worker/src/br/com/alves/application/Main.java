@@ -1,7 +1,7 @@
 package br.com.alves.application;
 
 import br.com.alves.entities.Department;
-import br.com.alves.entities.HourContratc;
+import br.com.alves.entities.HourContract;
 import br.com.alves.entities.Worker;
 import br.com.alves.entities.enums.WorkerLevel;
 
@@ -18,7 +18,7 @@ public class Main {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         Scanner scan = new Scanner(System.in);
         Worker worker;
-        HourContratc hourContratc;
+        HourContract hourContract;
         Department depart;
 
         System.out.print("Enter department's name: ");
@@ -47,8 +47,8 @@ public class Main {
             System.out.print("Duration (hours): ");
             int hours = scan.nextInt();
 
-            hourContratc = new HourContratc(sdf.parse(dateContract), value, hours);
-            worker.addContract(hourContratc);
+            hourContract = new HourContract(sdf.parse(dateContract), value, hours);
+            worker.addContract(hourContract);
         }
 
         System.out.print("Enter month and year to calculate income (MM/YYYY): ");

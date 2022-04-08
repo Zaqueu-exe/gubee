@@ -11,7 +11,7 @@ public class Worker {
     private WorkerLevel level;
     private Double baseSalary;
     private Department department;
-    private List<HourContratc> lista = new ArrayList();
+    private List<HourContract> contracts = new ArrayList<>();
 
     public Worker(String name, WorkerLevel level, Double baseSalary, Department department) {
         this.name = name;
@@ -20,26 +20,26 @@ public class Worker {
         this.department = department;
     }
 
-    public Worker(){
-        this.name = name;
+    public Worker() {
+
     }
 
-    public void addContract(HourContratc contract){
-        lista.add(contract);
+    public void addContract(HourContract contract) {
+        contracts.add(contract);
     }
 
-    public void removeContract(HourContratc contract){
-        lista.remove(contract);
+    public void removeContract(HourContract contract) {
+        contracts.remove(contract);
     }
 
-    public double income(Integer year, Integer month){
+    public double income(Integer year, Integer month) {
         Double total = 0.0;
         Calendar cal = Calendar.getInstance();
-        for(HourContratc aux : lista){
+        for (HourContract aux : contracts) {
             cal.setTime(aux.getDate());
             int monthIn = cal.get(Calendar.MONTH);
             int yearIn = cal.get(Calendar.YEAR);
-            if(year == yearIn && (month-1) == monthIn){
+            if (year == yearIn && (month - 1) == monthIn) {
                 total += aux.totalValue();
             }
         }
@@ -78,12 +78,8 @@ public class Worker {
         this.department = department;
     }
 
-    public List<HourContratc> getLista() {
-        return lista;
-    }
-
-    public void setLista(List<HourContratc> lista) {
-        this.lista = lista;
+    public List<HourContract> getContracts() {
+        return contracts;
     }
 
     @Override
