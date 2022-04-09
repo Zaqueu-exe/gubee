@@ -1,13 +1,13 @@
 package br.com.alves.entitites;
 
-public class OutsourcedEmplyee extends Employee{
+public class OutsourcedEmployee extends Employee{
 
     private Double additionalCharge;
 
-    public OutsourcedEmplyee() {
+    public OutsourcedEmployee() {
     }
 
-    public OutsourcedEmplyee(String name, Integer hours, Double valuePerHour, Double additionalCharge) {
+    public OutsourcedEmployee(String name, Integer hours, Double valuePerHour, Double additionalCharge) {
         super(name, hours, valuePerHour);
         this.additionalCharge = additionalCharge;
     }
@@ -21,7 +21,12 @@ public class OutsourcedEmplyee extends Employee{
     }
 
     @Override
+    public double payment(){
+        return super.payment() + this.additionalCharge * 1.10;
+    }
+
+    @Override
     public String toString() {
-        return "Additional charge: " + additionalCharge;
+        return name + " - $ " + String.format("%.2f",payment());
     }
 }

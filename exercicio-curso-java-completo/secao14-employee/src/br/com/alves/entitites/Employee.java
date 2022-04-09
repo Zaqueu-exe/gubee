@@ -1,7 +1,7 @@
 package br.com.alves.entitites;
 
 public class Employee {
-    private String name;
+    protected String name;
     private Integer hours;
     private Double valuePerHour;
 
@@ -45,9 +45,6 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "Name: " + name +
-                ", Hours: " + hours +
-                ", Value per hour: " + valuePerHour +
-                ", Payment: " + payment();
+        return name + " - $ " + String.format("%.2f",payment());
     }
 }
