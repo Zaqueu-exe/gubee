@@ -1,6 +1,6 @@
 package br.com.alves.application;
 
-import br.com.alves.application.model.entities.Account;
+import br.com.alves.model.entities.Account;
 
 import java.util.Locale;
 import java.util.Scanner;

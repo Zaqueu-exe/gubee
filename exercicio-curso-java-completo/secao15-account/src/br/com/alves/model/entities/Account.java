@@ -1,4 +1,4 @@
-package br.com.alves.application.model.entities;
+package br.com.alves.model.entities;
 
 public class Account {
     private Integer number;
