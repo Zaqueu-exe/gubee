@@ -4,8 +4,9 @@ import br.com.alves.boardgame.Board;
 import br.com.alves.boardgame.Piece;
 import br.com.alves.boardgame.Position;
 
-public  abstract class ChessPiece extends Piece {
-    private  Color color;
+public abstract class ChessPiece extends Piece {
+    private Color color;
+    private int moveCount;
 
     public ChessPiece(Board board, Color color) {
         super(board);
@@ -16,9 +17,23 @@ public  abstract class ChessPiece extends Piece {
         return color;
     }
 
-    protected boolean isThereOpponentPiece(Position position){
+    public int getMoveCount() {
+        return moveCount;
+    }
+
+    public void increaseMoveCount(){
+        moveCount++;
+    }
+    public void decreaseMoveCount(){
+        moveCount--;
+    }
+    public ChessPosition getChessPosition(){
+        return ChessPosition.fromPosition(position);
+    }
+
+    protected boolean isThereOpponentPiece(Position position) {
         ChessPiece p = (ChessPiece) getBoard().piece(position);
-        return p!= null && p.getColor() != color;
+        return p != null && p.getColor() != color;
     }
 
 }
