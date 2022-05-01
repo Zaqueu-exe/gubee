@@ -14,6 +14,7 @@ public class Pessoa implements Serializable {
     private String name;
     private String email;
     private String telefone;
+    private Pedido pedido;
 
     public Pessoa() {
     }
@@ -23,6 +24,7 @@ public class Pessoa implements Serializable {
         this.name = name;
         this.email = email;
         this.telefone = telefone;
+        this.pedido = pedido;
     }
 
     public String getId() {
@@ -55,6 +57,14 @@ public class Pessoa implements Serializable {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
+    }
+
+    public Pedido getPedido() {
+        return pedido;
+    }
+
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
     }
 
     @Override
