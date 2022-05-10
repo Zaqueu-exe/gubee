@@ -6,6 +6,7 @@ import com.alves.secao26springboot.dto.UserDTO;
 import com.alves.secao26springboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -13,6 +14,7 @@ import java.net.URI;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+
 
 @RestController
 @RequestMapping(value = "/users")
