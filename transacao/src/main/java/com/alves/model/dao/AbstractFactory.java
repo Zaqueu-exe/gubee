@@ -1,15 +1,10 @@
 package com.alves.model.dao;
 
-import com.alves.db.DB;
-import com.alves.model.dao.impl.PessoaDaoJDBC;
 import com.alves.model.dao.impl.Proxy;
+import com.alves.model.entities.Pessoa;
 
 public interface AbstractFactory {
+     Proxy createProxyPessoa();
 
-     static PessoaDaoJDBC createPessoaDao(){
-        return new PessoaDaoJDBC(DB.getConnection());
-    }
-     static Proxy createProxy(){
-        return new Proxy(createPessoaDao());
-    }
+     Pessoa createPessoa();
 }

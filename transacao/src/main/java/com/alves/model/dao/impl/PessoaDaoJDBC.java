@@ -57,10 +57,10 @@ public class PessoaDaoJDBC implements PessoaDao {
                     return pessoa;
                 }
             } catch (SQLException e) {
-                e.getMessage();
+                throw new RuntimeException(e.getMessage());
             }
         } catch (SQLException e) {
-            e.getMessage();
+            throw new RuntimeException(e.getMessage());
         } finally {
             DB.closeStatment(pstm);
         }
@@ -80,12 +80,11 @@ public class PessoaDaoJDBC implements PessoaDao {
                 }
                 return list;
             } catch (SQLException e) {
-                e.getMessage();
+                throw new RuntimeException(e.getMessage());
             }
         } catch (SQLException e) {
-            e.getMessage();
+            throw new RuntimeException(e.getMessage());
         }
-        return null;
     }
 
     private Pessoa instatiationPessoa(ResultSet rset) throws SQLException {

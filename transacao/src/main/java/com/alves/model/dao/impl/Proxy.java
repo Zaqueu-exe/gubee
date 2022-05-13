@@ -17,7 +17,7 @@ public class Proxy implements PessoaDao {
     @Override
     public void insert(Pessoa pessoa) {
         Runnable runnable = () -> service.insert(pessoa);
-        this.executeInsert(runnable);
+        this.execute(runnable);
     }
 
     @Override
@@ -30,19 +30,20 @@ public class Proxy implements PessoaDao {
         return service.findAll();
     }
 
-    private void executeInsert(Runnable runnable) {
+    private void execute(Runnable runnable) {
         Method method = null;
         try {
             method = service.getClass().getDeclaredMethod("insert", Pessoa.class);
             if (method.isAnnotationPresent(Transaction.class)) {
                 System.out.println("Iniciando execução do método " + method);
+                System.out.println();
                 runnable.run();
-                System.out.println("Finalizando execução do método" + method + " com sucesso");
-                return;
+                System.out.println("Finalizando execução do método " + method + " com sucesso");
+            } else {
+                runnable.run();
             }
-            runnable.run();
         } catch (NoSuchMethodException | RuntimeException e) {
-            System.out.println("Finalizando execução do método" + method + " com erro");
+            System.out.println("Finalizando execução do método " + method + " com erro");
             throw new RuntimeException(e);
         }
     }

@@ -1,6 +1,7 @@
 package com.alves.model.dao;
 
 import com.alves.model.entities.Pessoa;
+
 import java.util.List;
 
 public interface PessoaDao {
