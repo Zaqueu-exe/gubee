@@ -2,12 +2,18 @@ package com.alves.model.entities.abstractPessoa;
 
 import java.util.Date;
 
-@Deprecated
 public interface PessoaAbstrata {
-    
-    //Não foi usado no codigo essa interface;
+
+
+    Long getId();
+
+    void setId(Long id);
 
     String getNome();
 
+    void setNome(String nome);
+
     Date getDataNascimento();
+
+    void setDataNascimento(Date DataNascimento);
 }

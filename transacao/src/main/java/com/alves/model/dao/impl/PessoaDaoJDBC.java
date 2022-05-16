@@ -4,6 +4,7 @@ import com.alves.model.anotation.Transaction;
 import com.alves.db.DB;
 import com.alves.model.dao.PessoaDao;
 import com.alves.model.entities.Pessoa;
+import com.alves.model.entities.abstractPessoa.PessoaAbstrata;
 
 import java.sql.*;
 import java.sql.Date;
@@ -21,7 +22,7 @@ public class PessoaDaoJDBC implements PessoaDao {
 
     @Transaction
     @Override
-    public void insert(Pessoa pessoa) {
+    public void insert(PessoaAbstrata pessoa) {
         String sql = "INSERT INTO pessoa (nome, dataNascimento) VALUES (?, ?)";
 
         try (PreparedStatement pstm = conn.prepareStatement(sql)) {
@@ -43,7 +44,7 @@ public class PessoaDaoJDBC implements PessoaDao {
     }
 
     @Override
-    public Pessoa findById(Long id) {
+    public PessoaAbstrata findById(Long id) {
         String sql = "SELECT * FROM pessoa WHERE id = ?";
 
         PreparedStatement pstm = null;
@@ -53,7 +54,7 @@ public class PessoaDaoJDBC implements PessoaDao {
             pstm.setLong(1, id);
             try (ResultSet rset = pstm.executeQuery()) {
                 if (rset.next()) {
-                    Pessoa pessoa = instatiationPessoa(rset);
+                    PessoaAbstrata pessoa = instatiationPessoa(rset);
                     return pessoa;
                 }
             } catch (SQLException e) {
@@ -69,9 +70,9 @@ public class PessoaDaoJDBC implements PessoaDao {
 
     @Transaction
     @Override
-    public List<Pessoa> findAll() {
+    public List<PessoaAbstrata> findAll() {
         String sql = "SELECT * FROM pessoa";
-        List<Pessoa> list = new ArrayList<>();
+        List<PessoaAbstrata> list = new ArrayList<>();
 
         try (PreparedStatement pstm = conn.prepareStatement(sql)) {
             try (ResultSet rset = pstm.executeQuery()) {
@@ -87,8 +88,8 @@ public class PessoaDaoJDBC implements PessoaDao {
         }
     }
 
-    private Pessoa instatiationPessoa(ResultSet rset) throws SQLException {
-        Pessoa pessoa = new Pessoa();
+    private PessoaAbstrata instatiationPessoa(ResultSet rset) throws SQLException {
+        PessoaAbstrata pessoa = new Pessoa();
         pessoa.setId(rset.getLong("id"));
         pessoa.setNome(rset.getString("nome"));
         pessoa.setDataNascimento(rset.getDate("dataNascimento"));

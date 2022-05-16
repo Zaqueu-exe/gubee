@@ -1,9 +1,11 @@
 package com.alves.model.entities;
 
+import com.alves.model.entities.abstractPessoa.PessoaAbstrata;
+
 import java.util.Date;
 import java.util.Objects;
 
-public class Pessoa {
+public class Pessoa implements PessoaAbstrata {
     private Long id;
     private String nome;
     private Date dataNascimento;
@@ -17,26 +19,32 @@ public class Pessoa {
         this.dataNascimento = dataNascimento;
     }
 
+    @Override
     public Long getId() {
         return id;
     }
 
+    @Override
     public void setId(Long id) {
         this.id = id;
     }
 
+    @Override
     public String getNome() {
         return nome;
     }
 
+    @Override
     public void setNome(String nome) {
         this.nome = nome;
     }
 
+    @Override
     public Date getDataNascimento() {
         return dataNascimento;
     }
 
+    @Override
     public void setDataNascimento(Date dataNascimento) {
         this.dataNascimento = dataNascimento;
     }

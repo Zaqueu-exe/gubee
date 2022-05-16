@@ -1,8 +1,9 @@
 package com.alves;
 
-import com.alves.factoryMaker.FactoryMaker;
-import com.alves.factoryMaker.enums.PessoaType;
+import com.alves.model.dao.enums.PessoaType;
+import com.alves.model.dao.AbstractFactory;
 import com.alves.model.entities.Pessoa;
+import com.alves.model.entities.abstractPessoa.PessoaAbstrata;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -12,14 +13,14 @@ public class Main {
         
         var sdf = new SimpleDateFormat("dd-MM-yyyy");
 
-        var proxy = FactoryMaker.createProxy(PessoaType.PESSOA);
+        var proxy = AbstractFactory.createProxy(PessoaType.PESSOA);
+        proxy.insert(new Pessoa(null, "Joana", sdf.parse("02-06-1965")));
 
-        //proxy.insert(new Pessoa(null, "Patricia", sdf.parse("05-05-1995")));
-
-        System.out.println();
+       // System.out.println();
 
         proxy.findAll().stream().forEach(System.out::println);
 
-        var pessoa = FactoryMaker.createPessoa(PessoaType.PESSOA);
+
+       // var pessoa = AbstractFactory.createPessoa(PessoaType.PESSOA);
     }
 }

@@ -1,14 +1,14 @@
 package com.alves.model.dao;
 
-import com.alves.model.entities.Pessoa;
+import com.alves.model.entities.abstractPessoa.PessoaAbstrata;
 
 import java.util.List;
 
 public interface PessoaDao {
 
-    void insert(Pessoa pessoa);
+    void insert(PessoaAbstrata pessoa);
 
-    Pessoa findById(Long id);
+    PessoaAbstrata findById(Long id);
 
-    List<Pessoa> findAll();
+    List<PessoaAbstrata> findAll();
 }
