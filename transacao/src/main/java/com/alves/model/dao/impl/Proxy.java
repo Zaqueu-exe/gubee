@@ -2,7 +2,6 @@ package com.alves.model.dao.impl;
 
 import com.alves.model.anotation.Transaction;
 import com.alves.model.dao.PessoaDao;
-import com.alves.model.entities.Pessoa;
 import com.alves.model.entities.abstractPessoa.PessoaAbstrata;
 
 import java.lang.reflect.Method;
@@ -40,6 +39,7 @@ public class Proxy implements PessoaDao {
                 System.out.println();
                 runnable.run();
                 System.out.println("Finalizando execução do método " + method + " com sucesso");
+                System.out.println();
             } else {
                 runnable.run();
             }

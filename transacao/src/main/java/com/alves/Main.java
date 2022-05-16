@@ -14,7 +14,7 @@ public class Main {
         var sdf = new SimpleDateFormat("dd-MM-yyyy");
 
         var proxy = AbstractFactory.createProxy(PessoaType.PESSOA);
-        proxy.insert(new Pessoa(null, "Joana", sdf.parse("02-06-1965")));
+        proxy.insert(new Pessoa(null, "Ze", sdf.parse("01-04-1986")));
 
        // System.out.println();
 

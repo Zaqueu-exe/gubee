@@ -11,7 +11,6 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-/* */
 public class PessoaDaoJDBC implements PessoaDao {
 
     private Connection conn;
@@ -46,6 +45,7 @@ public class PessoaDaoJDBC implements PessoaDao {
     @Override
     public PessoaAbstrata findById(Long id) {
         String sql = "SELECT * FROM pessoa WHERE id = ?";
+        PessoaAbstrata pessoa = null;
 
         PreparedStatement pstm = null;
 
@@ -54,8 +54,7 @@ public class PessoaDaoJDBC implements PessoaDao {
             pstm.setLong(1, id);
             try (ResultSet rset = pstm.executeQuery()) {
                 if (rset.next()) {
-                    PessoaAbstrata pessoa = instatiationPessoa(rset);
-                    return pessoa;
+                    pessoa = instatiationPessoa(rset);
                 }
             } catch (SQLException e) {
                 throw new RuntimeException(e.getMessage());
@@ -65,10 +64,9 @@ public class PessoaDaoJDBC implements PessoaDao {
         } finally {
             DB.closeStatment(pstm);
         }
-        return null;
+        return pessoa;
     }
 
-    @Transaction
     @Override
     public List<PessoaAbstrata> findAll() {
         String sql = "SELECT * FROM pessoa";
