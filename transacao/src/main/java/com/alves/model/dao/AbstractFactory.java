@@ -15,7 +15,7 @@ public interface AbstractFactory {
           };
      }
 
-     public static PessoaDao createProxy(PessoaType type){
+     public static PessoaDao createPessoaDaoProxy(PessoaType type){
           return switch (type){
                case PESSOA -> new Proxy(new PessoaDaoJDBC(DB.getConnection()));
                default -> null;
