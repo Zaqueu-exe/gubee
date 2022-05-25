@@ -11,19 +11,14 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import com.example.domain.dao.AbstractFactory;
+import com.example.domain.dao.DaoFactory;
 import com.example.domain.dao.daoAbstract.ProdutoDao;
-import com.example.domain.dao.enums.TypeDao;
 import com.example.domain.entities.Produto;
 import com.example.domain.entities.Tecnologia;
-import com.fasterxml.jackson.databind.AnnotationIntrospector.ReferenceProperty.Type;
 import com.google.gson.Gson;
 
-/**
- * Root resource (exposed at "myresource" path)
- */
 @Path("produtos")
-public class MyResource {
+public class MyResource{
 
     @GET
     @Path("tecnologias/{tecnologia}")
@@ -31,8 +26,7 @@ public class MyResource {
     public String getAll(@PathParam("tecnologia") String nome) {
         Set<Produto> lista = new HashSet(); 
 
-        AbstractFactory factory = AbstractFactory.getDaoFactory(TypeDao.DAOJDBC);
-        ProdutoDao produtoDao = factory.getProdutoDao();
+        ProdutoDao produtoDao = DaoFactory.getProdutoDao();
 
         Tecnologia  tecnologia = new Tecnologia(null, nome); 
 
@@ -46,10 +40,9 @@ public class MyResource {
     @Produces(MediaType.APPLICATION_JSON)
     public String getByMercadoAlvo(@PathParam("mercadoAlvo") String mercadoAlvo) {
 
-        List<Produto> lista = new ArrayList<>(); 
+        List<Produto> lista = new ArrayList<>();
 
-        AbstractFactory factory = AbstractFactory.getDaoFactory(TypeDao.DAOJDBC);
-        ProdutoDao produtoDao = factory.getProdutoDao();
+        ProdutoDao produtoDao = DaoFactory.getProdutoDao();
 
         lista = produtoDao.findByMercadoAlvo(mercadoAlvo);
         
