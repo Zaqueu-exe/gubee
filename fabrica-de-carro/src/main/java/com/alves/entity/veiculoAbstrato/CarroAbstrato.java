@@ -1,4 +1,4 @@
-package com.alves.entity.carroAbstrato;
+package com.alves.entity.veiculoAbstrato;
 
 public interface CarroAbstrato {
 

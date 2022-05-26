@@ -1,20 +1,38 @@
 package com.alves;
 
-import com.alves.entity.carroAbstrato.CarroAbstrato;
-import com.alves.fabrica.FabricaAbstrata;
-import com.alves.fabrica.enums.TipoCarro;
-
 import java.util.Arrays;
 import java.util.List;
+
+import com.alves.entity.veiculoAbstrato.BicicletaAbstrata;
+import com.alves.entity.veiculoAbstrato.CarroAbstrato;
+import com.alves.fabrica.enums.TipoFabrica;
 
 public class Main {
     public static void main(String[] args) {
 
-        var popular = FabricaAbstrata.escolherTipo(TipoCarro.POPULAR).criarCarro();
-        var luxo = FabricaAbstrata.escolherTipo(TipoCarro.LUXO).criarCarro();
-        var superLuxo = FabricaAbstrata.escolherTipo(TipoCarro.SUPERLUXO).criarCarro();
+        var luxoFactory = Init.criarFabrica(TipoFabrica.LUXO);
+        var popularFactory = Init.criarFabrica(TipoFabrica.POPULAR);
+        var superLuxoFactory = Init.criarFabrica(TipoFabrica.SUPERLUXO);
 
-        List<CarroAbstrato> garagem = Arrays.asList(popular, luxo, superLuxo);
-        garagem.stream().map(x -> x.descricao()).forEach(System.out::println);
+        List<BicicletaAbstrata> bicicletas = Arrays.asList(
+            luxoFactory.criarBicicleta(),
+            popularFactory.criarBicicleta(),
+            superLuxoFactory.criarBicicleta()
+        );
+    
+        
+        List<CarroAbstrato> carros = Arrays.asList(
+            luxoFactory.criarCarro(),
+            popularFactory.criarCarro(),
+            superLuxoFactory.criarCarro()
+        );
+
+        System.out.println("Familia bicicleta com suas variantes: \n");
+        bicicletas.stream().map(x -> x.descricao()).forEach(System.out::println);
+
+        System.out.println("------------------------------------------ \n");
+
+        System.out.println("Familia carro com suas variantes: \n");
+        carros.stream().map(x -> x.descricao()).forEach(System.out::println);
     }
 }

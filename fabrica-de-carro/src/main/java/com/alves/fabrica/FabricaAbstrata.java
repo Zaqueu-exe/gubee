@@ -1,17 +1,11 @@
 package com.alves.fabrica;
 
-import com.alves.entity.carroAbstrato.CarroAbstrato;
-import com.alves.fabrica.enums.TipoCarro;
+import com.alves.entity.veiculoAbstrato.BicicletaAbstrata;
+import com.alves.entity.veiculoAbstrato.CarroAbstrato;
 
 public interface FabricaAbstrata {
 
-    public static FabricaAbstrata escolherTipo(TipoCarro marca){
-        return switch (marca){
-            case POPULAR -> new Popular();
-            case LUXO -> new Luxo();
-            case SUPERLUXO -> new SuperLuxo();
-        };
-    }
-
     CarroAbstrato criarCarro();
+
+    BicicletaAbstrata criarBicicleta();
 }

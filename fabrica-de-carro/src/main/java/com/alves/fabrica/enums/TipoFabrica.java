@@ -1,5 +1,5 @@
 package com.alves.fabrica.enums;
 
-public enum TipoCarro {
+public enum TipoFabrica {
     POPULAR, LUXO, SUPERLUXO;
 }

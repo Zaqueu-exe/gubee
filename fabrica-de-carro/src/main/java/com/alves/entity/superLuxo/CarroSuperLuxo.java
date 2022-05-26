@@ -1,6 +1,6 @@
-package com.alves.entity;
+package com.alves.entity.superLuxo;
 
-import com.alves.entity.carroAbstrato.CarroAbstrato;
+import com.alves.entity.veiculoAbstrato.CarroAbstrato;
 
 public class CarroSuperLuxo implements CarroAbstrato {
 

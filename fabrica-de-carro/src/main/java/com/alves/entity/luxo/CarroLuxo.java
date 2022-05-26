@@ -1,6 +1,6 @@
-package com.alves.entity;
+package com.alves.entity.luxo;
 
-import com.alves.entity.carroAbstrato.CarroAbstrato;
+import com.alves.entity.veiculoAbstrato.CarroAbstrato;
 
 public class CarroLuxo implements CarroAbstrato {
     @Override
