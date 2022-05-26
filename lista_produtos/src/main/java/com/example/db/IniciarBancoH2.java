@@ -1,6 +1,5 @@
-package com.example;
+package com.example.db;
 
-import com.example.db.H2;
 import com.example.domain.dao.DaoFactory;
 import com.example.domain.dao.daoAbstract.ProdutoDao;
 import com.example.domain.dao.daoAbstract.TecnologiaDao;
@@ -9,7 +8,7 @@ import com.example.domain.entities.Tecnologia;
 
 import java.sql.SQLException;
 
-public class IniciarBanco {
+public class IniciarBancoH2 {
 
     private ProdutoDao produtoDao = DaoFactory.getProdutoDao();
     private TecnologiaDao tecnologiaDao = DaoFactory.getTecnologiaDao();

@@ -1,5 +1,6 @@
 package com.example;
 
+import com.example.db.IniciarBancoH2;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
@@ -36,7 +37,7 @@ public class Main {
      * @throws IOException
      */
     public static void main(String[] args) throws IOException, SQLException {
-        IniciarBanco t = new IniciarBanco();
+        IniciarBancoH2 t = new IniciarBancoH2();
         t.iniciarBanco();
         final HttpServer server = startServer();
         System.out.println(String.format("Jersey app started with endpoints available at "
