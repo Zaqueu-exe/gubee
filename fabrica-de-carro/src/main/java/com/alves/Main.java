@@ -30,7 +30,7 @@ public class Main {
         System.out.println("Familia bicicleta com suas variantes: \n");
         bicicletas.stream().map(x -> x.descricao()).forEach(System.out::println);
 
-        System.out.println("------------------------------------------ \n");
+        System.out.println("---------------------------------\n");
 
         System.out.println("Familia carro com suas variantes: \n");
         carros.stream().map(x -> x.descricao()).forEach(System.out::println);
