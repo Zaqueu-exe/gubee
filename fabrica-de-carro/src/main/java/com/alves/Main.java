@@ -14,7 +14,7 @@ public class Main {
         var luxo = FabricaAbstrata.escolherTipo(TipoCarro.LUXO).criarCarro();
         var superLuxo = FabricaAbstrata.escolherTipo(TipoCarro.SUPERLUXO).criarCarro();
 
-        List<CarroAbstrato> garagen = Arrays.asList(popular, luxo, superLuxo);
-        garagen.stream().map(x -> x.descricao()).forEach(System.out::println);
+        List<CarroAbstrato> garagem = Arrays.asList(popular, luxo, superLuxo);
+        garagem.stream().map(x -> x.descricao()).forEach(System.out::println);
     }
 }
