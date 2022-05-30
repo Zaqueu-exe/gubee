@@ -1,33 +1,31 @@
 package com.alves;
 
-import com.alves.manager.Publicador;
-import com.alves.service.EmailService;
-import com.alves.service.interfac.Notificar;
-
-import java.util.Arrays;
-import java.util.List;
+import com.alves.Objects.User;
+import com.alves.service.EmailAlert;
+import com.alves.service.SmsAlert;
 
 public class Main {
     public static void main(String[] args) {
-        Publicador publicador = new Publicador();
 
-        EmailService e1 = new EmailService("j4@gmail.com");
-        EmailService e2 = new EmailService("gh5@gmail.com");
-        EmailService e3 = new EmailService("nvg76@gmail.com");
-        EmailService e4 = new EmailService("lpt678@gmail.com");
-        EmailService e5 = new EmailService("games01@gmail.com");
-        EmailService e6 = new EmailService("gfd3@gmail.com");
-        EmailService e7 = new EmailService("pl90@gmail.com");
-        EmailService e8 = new EmailService("ihjt5@gmail.com");
+        AlertBox alertBox = new AlertBox();
 
-        List<Notificar> notificars = Arrays.asList(e1, e2, e3, e4, e5, e6, e7, e8);
+        User user1 = new User("Joao", "joao@gmail.com");
+        User user2 = new User("Pedro", "pedro@gmail.com");
 
-        publicador.escrever(notificars);
+        EmailAlert emailAlert = new EmailAlert(user1);
+        EmailAlert emailAlert1 = new EmailAlert(user2);
 
-        //não é para inserir
-        publicador.escrever(notificars);
+        SmsAlert smsAlert = new SmsAlert(user1);
+        SmsAlert smsAlert1 = new SmsAlert(user2);
 
-        publicador.notificarTodos();
+        alertBox.addEmail("EMERGENCIA", emailAlert);
+        alertBox.addEmail("URGENCIA", smsAlert);
+
+        alertBox.addEmail("EMERGENCIA", emailAlert1);
+        alertBox.addEmail("URGENCIA", smsAlert1);
+
+        alertBox.notifyEvery("EMERGENCIA");
+        alertBox.notifyEvery("URGENCIA");
 
     }
 }
