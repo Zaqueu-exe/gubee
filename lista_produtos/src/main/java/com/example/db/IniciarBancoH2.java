@@ -1,6 +1,6 @@
 package com.example.db;
 
-import com.example.domain.dao.DaoFactory;
+import com.example.domain.dao.AbstractDaoFactory;
 import com.example.domain.dao.daoAbstract.ProdutoDao;
 import com.example.domain.dao.daoAbstract.TecnologiaDao;
 import com.example.domain.entities.Produto;
@@ -10,8 +10,8 @@ import java.sql.SQLException;
 
 public class IniciarBancoH2 {
 
-    private ProdutoDao produtoDao = DaoFactory.getProdutoDao();
-    private TecnologiaDao tecnologiaDao = DaoFactory.getTecnologiaDao();
+    private ProdutoDao produtoDao = AbstractDaoFactory.getProdutoDao();
+    private TecnologiaDao tecnologiaDao = AbstractDaoFactory.getTecnologiaDao();
 
     public void iniciarBanco() throws SQLException {
         H2.createTables();

@@ -11,7 +11,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import com.example.domain.dao.DaoFactory;
+import com.example.domain.dao.AbstractDaoFactory;
+import com.example.domain.dao.DAOFactory;
 import com.example.domain.dao.daoAbstract.ProdutoDao;
 import com.example.domain.entities.Produto;
 import com.example.domain.entities.Tecnologia;
@@ -26,7 +27,7 @@ public class MyResource{
     public String getAll(@PathParam("tecnologia") String nome) {
         Set<Produto> lista = new HashSet(); 
 
-        ProdutoDao produtoDao = DaoFactory.getProdutoDao();
+        ProdutoDao produtoDao = DAOFactory;
 
         Tecnologia  tecnologia = new Tecnologia(null, nome); 
 
@@ -42,7 +43,7 @@ public class MyResource{
 
         List<Produto> lista = new ArrayList<>();
 
-        ProdutoDao produtoDao = DaoFactory.getProdutoDao();
+        ProdutoDao produtoDao = AbstractDaoFactory.getProdutoDao();
 
         lista = produtoDao.findByMercadoAlvo(mercadoAlvo);
         
