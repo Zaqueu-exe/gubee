@@ -48,7 +48,10 @@ public class TechnologyDaoJDBC implements TechnologyDao {
         try (PreparedStatement pstm = conn.prepareStatement(sql)) {
             try (ResultSet rset = pstm.executeQuery()) {
                 while (rset.next()) {
-                    technologies.add(new Technology(rset.getLong("id"), rset.getString("nome")));
+                    technologies.add(Technology.builder()
+                            .id(rset.getLong("id"))
+                            .name(rset.getString("nome"))
+                            .build());
                 }
             } catch (SQLException e1) {
                 throw new RuntimeException(e1.getMessage());

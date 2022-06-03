@@ -10,8 +10,8 @@ import java.sql.SQLException;
 
 public class StartDataBaseH2 {
 
-    private ProductDao productDao = MakeDao.createDaoJDBC().getProductDao();
-    private TechnologyDao technologyDao = MakeDao.createDaoJDBC().getTechnologyDao();
+    private final ProductDao productDao = MakeDao.createDaoJDBC().getProductDao();
+    private final TechnologyDao technologyDao = MakeDao.createDaoJDBC().getTechnologyDao();
 
     public void initDataBase() throws SQLException {
         H2.createTables();
@@ -20,33 +20,112 @@ public class StartDataBaseH2 {
         this.insertTechnologyInProduct();
     }
 
-    private void insertProducts(){
-        productDao.insert(new Product(null, "Yahoo", "site de entreterimento", "Publico geral"));
-        productDao.insert(new Product(null, "G1", "", "Publico geral"));
-        productDao.insert(new Product(null, "R7", "Site de noticias", "Publico geral"));
-        productDao.insert(new Product(null, "Google chrome", "Buscador", "Publico geral"));
-        productDao.insert(new Product(null, "Visual Studio", "Programa para desenvolvimento", "Programadores"));
+    private void insertProducts() {
+        productDao.insert(Product.builder()
+                .name("Yahoo")
+                .description("site de entreterimento")
+                .targetMarket("Publico geral")
+                .build());
+        productDao.insert(Product.builder()
+                .name("G1")
+                .description("Site de noticias e variedades")
+                .targetMarket("Publico geral")
+                .build());
+        productDao.insert(Product.builder()
+                .name("R7")
+                .description("Site de noticias")
+                .targetMarket("Publico geral")
+                .build());
+        productDao.insert(Product.builder()
+                .name("Google Chrome")
+                .description("Buscador")
+                .targetMarket("Publico geral")
+                .build());
+        productDao.insert(Product.builder()
+                .name("Visual Studio")
+                .description("Programa para desenvolvimento")
+                .targetMarket("Programadores")
+                .build());
     }
-    private void insertTechnologies(){
-        technologyDao.insert(new Technology(null, "HTML"));
-        technologyDao.insert(new Technology(null, "SQL"));
-        technologyDao.insert(new Technology(null, "JavaScript"));
-        technologyDao.insert(new Technology(null, "Java"));
-        technologyDao.insert(new Technology(null, "CSS"));
-        technologyDao.insert(new Technology(null, "XML"));
+
+    private void insertTechnologies() {
+        technologyDao.insert(Technology.builder()
+                .name("HTML")
+                .build());
+        technologyDao.insert(Technology.builder()
+                .name("SQL")
+                .build());
+        technologyDao.insert(Technology.builder()
+                .name("JavaScript")
+                .build());
+        technologyDao.insert(Technology.builder()
+                .name("Java")
+                .build());
+        technologyDao.insert(Technology.builder()
+                .name("CSS")
+                .build());
+        technologyDao.insert(Technology.builder()
+                .name("XML")
+                .build());
     }
-    private void insertTechnologyInProduct(){
-        productDao.insertTechnologyInProduct(new Product(1L), new Technology(1L));
-        productDao.insertTechnologyInProduct(new Product(1L), new Technology(2L));
 
-        productDao.insertTechnologyInProduct(new Product(2L), new Technology(3L));
-        productDao.insertTechnologyInProduct(new Product(2L), new Technology(5L));
+    private void insertTechnologyInProduct() {
+        productDao.insertTechnologyInProduct(Product.builder()
+                        .id(1L)
+                        .build()
+                , Technology.builder()
+                        .id(1L)
+                        .build());
+        productDao.insertTechnologyInProduct(Product.builder()
+                        .id(1L)
+                        .build()
+                , Technology.builder()
+                        .id(2L)
+                        .build());
 
-        productDao.insertTechnologyInProduct(new Product(3L), new Technology(4L));
+        productDao.insertTechnologyInProduct(Product.builder()
+                        .id(2L)
+                        .build()
+                , Technology.builder()
+                        .id(3L)
+                        .build());
+        productDao.insertTechnologyInProduct(Product.builder()
+                        .id(2L)
+                        .build()
+                , Technology.builder()
+                        .id(5L)
+                        .build());
 
-        productDao.insertTechnologyInProduct(new Product(4L), new Technology(1L));
-        productDao.insertTechnologyInProduct(new Product(4L), new Technology(2L));
-        productDao.insertTechnologyInProduct(new Product(4L), new Technology(3L));
-        productDao.insertTechnologyInProduct(new Product(4L), new Technology(5L));
+        productDao.insertTechnologyInProduct(Product.builder()
+                        .id(3L)
+                        .build()
+                , Technology.builder()
+                        .id(4L)
+                        .build());
+
+        productDao.insertTechnologyInProduct(Product.builder()
+                        .id(4L)
+                        .build()
+                , Technology.builder()
+                        .id(1L)
+                        .build());
+        productDao.insertTechnologyInProduct(Product.builder()
+                        .id(4L)
+                        .build()
+                , Technology.builder()
+                        .id(2L)
+                        .build());
+        productDao.insertTechnologyInProduct(Product.builder()
+                        .id(4L)
+                        .build()
+                , Technology.builder()
+                        .id(3L)
+                        .build());
+        productDao.insertTechnologyInProduct(Product.builder()
+                        .id(4L)
+                        .build()
+                , Technology.builder()
+                        .id(5L)
+                        .build());
     }
 }

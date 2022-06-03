@@ -10,7 +10,7 @@ public interface ProductDao {
 
     void insertTechnologyInProduct(Product product, Technology technology);
 
-    List<Product> findByTechnology(Technology... technologies);
+    List<Product> findByTechnology(String technologyName);
 
     List<Product> findByTargetMarket(String targetMarket);
 

@@ -61,7 +61,7 @@ public class ProductDaoJDBC implements ProductDao {
 
 
     @Override
-    public List<Product> findByTechnology(Technology... technologies) {
+    public List<Product> findByTechnology(String technologyName) {
         String sql = "SELECT * FROM produto " +
                 "INNER JOIN produtousetecnologia " +
                 "ON produto.id = produto_id " +
@@ -72,7 +72,7 @@ public class ProductDaoJDBC implements ProductDao {
         List<Product> products = new ArrayList<>();
 
         try (PreparedStatement pstm = conn.prepareStatement(sql)) {
-            pstm.setString(1, technologies[0].getName());
+            pstm.setString(1, technologyName);
             try (ResultSet rset = pstm.executeQuery()) {
                 while (rset.next()) {
                     Product product = instantiationProduct(rset);
@@ -111,17 +111,21 @@ public class ProductDaoJDBC implements ProductDao {
     }
 
     private Product instantiationProduct(ResultSet rset) throws SQLException {
-        Product product = new Product(rset.getLong("id"),
-                rset.getString("nome"),
-                rset.getString("descricao"),
-                rset.getString("mercadoalvo"));
+        Product product = Product.builder()
+                .id(rset.getLong("id"))
+                .name(rset.getString("nome"))
+                .description(rset.getString("descricao"))
+                .targetMarket(rset.getString("mercadoalvo"))
+                .build();
 
         return product;
     }
 
     private Technology instatiationTechnology(ResultSet rset) throws SQLException {
-        Technology technology = new Technology(rset.getLong("tecnologia.id"),
-                rset.getString("tecnologia.nome"));
+        Technology technology = Technology.builder()
+                .id(rset.getLong("tecnologia.id"))
+                .name(rset.getString("tecnologia.nome"))
+                .build();
 
         return technology;
     }
