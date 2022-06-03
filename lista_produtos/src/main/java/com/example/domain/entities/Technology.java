@@ -2,15 +2,16 @@ package com.example.domain.entities;
 
 import java.util.Objects;
 
-public class Tecnologia {
+public class Technology {
     private Long id;
-    private String nome;
+    private String name;
 
-    public Tecnologia() {
-    }
-    public Tecnologia(Long id, String nome) {
+    public Technology(Long id) {
         this.id = id;
-        this.nome = nome;
+    }
+    public Technology(Long id, String name) {
+        this.id = id;
+        this.name = name;
     }
 
     public Long getId() {
@@ -21,19 +22,19 @@ public class Tecnologia {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Tecnologia that = (Tecnologia) o;
+        Technology that = (Technology) o;
         return Objects.equals(id, that.id);
     }
 
@@ -44,9 +45,9 @@ public class Tecnologia {
 
     @Override
     public String toString() {
-        return "Tecnologia{" +
+        return "Technology{" +
                 "id=" + id +
-                ", nome='" + nome + '\'' +
+                ", name='" + name + '\'' +
                 '}';
     }
 }

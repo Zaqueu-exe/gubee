@@ -1,7 +1,6 @@
-package com.example.db;
+package com.example.db.h2;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -42,8 +41,7 @@ public class H2 {
 
     public static void createTables() throws SQLException {
 
-
-         Connection conn = DB.getConnection();
+         Connection conn = DBH2.getConnection();
          try(Statement stm = conn.createStatement()){
              stm.execute(createTableProdutoSQL);
              stm.execute(createTableTecnologiaSQL);

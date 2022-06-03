@@ -1,20 +1,20 @@
 package com.example.domain.dao;
 
-import com.example.db.DB;
-import com.example.domain.dao.daoAbstract.ProdutoDao;
-import com.example.domain.dao.daoAbstract.TecnologiaDao;
-import com.example.domain.dao.impl.ProdutoDaoJDBC;
-import com.example.domain.dao.impl.TecnologiaDaoJDBC;
+import com.example.db.h2.DBH2;
+import com.example.domain.dao.daoAbstract.ProductDao;
+import com.example.domain.dao.daoAbstract.TechnologyDao;
+import com.example.domain.dao.impl.ProductDaoJDBC;
+import com.example.domain.dao.impl.TechnologyDaoJDBC;
 
 public class DAOFactory implements AbstractDaoFactory{
 
     @Override
-    public ProdutoDao getProdutoDao() {
-        return new ProdutoDaoJDBC(DB.getConnection());
+    public ProductDao getProductDao() {
+        return new ProductDaoJDBC(DBH2.getConnection());
     }
 
     @Override
-    public TecnologiaDao getTecnologiaDao() {
-        return new TecnologiaDaoJDBC(DB.getConnection());
+    public TechnologyDao getTechnologyDao() {
+        return new TechnologyDaoJDBC(DBH2.getConnection());
     }
 }

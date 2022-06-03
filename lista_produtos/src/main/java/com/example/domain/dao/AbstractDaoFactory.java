@@ -1,16 +1,13 @@
 package com.example.domain.dao;
 
-import com.example.db.DB;
-import com.example.domain.dao.daoAbstract.ProdutoDao;
-import com.example.domain.dao.daoAbstract.TecnologiaDao;
-import com.example.domain.dao.impl.ProdutoDaoJDBC;
-import com.example.domain.dao.impl.TecnologiaDaoJDBC;
+import com.example.domain.dao.daoAbstract.ProductDao;
+import com.example.domain.dao.daoAbstract.TechnologyDao;
 
 public interface AbstractDaoFactory {
 
 
-    public ProdutoDao getProdutoDao();
+    public ProductDao getProductDao();
 
-    public TecnologiaDao getTecnologiaDao();
+    public TechnologyDao getTechnologyDao();
 
 }

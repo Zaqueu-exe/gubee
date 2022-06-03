@@ -1,52 +1,51 @@
 package com.example;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-
-import com.example.domain.dao.AbstractDaoFactory;
-import com.example.domain.dao.DAOFactory;
-import com.example.domain.dao.daoAbstract.ProdutoDao;
-import com.example.domain.entities.Produto;
-import com.example.domain.entities.Tecnologia;
+import javax.ws.rs.core.Response;
+import com.example.domain.MakeDao;
+import com.example.domain.dao.daoAbstract.ProductDao;
+import com.example.domain.entities.Product;
+import com.example.domain.entities.Technology;
 import com.google.gson.Gson;
+import org.glassfish.grizzly.http.util.HttpStatus;
 
-@Path("produtos")
+@Path("products")
 public class MyResource{
 
+    private ProductDao productDao = MakeDao.createDaoJDBC().getProductDao();
+
     @GET
-    @Path("tecnologias/{tecnologia}")
+    @Path("technologies/{technology}")
     @Produces(MediaType.APPLICATION_JSON)
-    public String getAll(@PathParam("tecnologia") String nome) {
-        Set<Produto> lista = new HashSet(); 
+    public Response getAll(@PathParam("technology") String name) {
 
-        ProdutoDao produtoDao = DAOFactory;
+        Technology technology = new Technology(null, name);
 
-        Tecnologia  tecnologia = new Tecnologia(null, nome); 
+        List<Product> list = productDao.findByTechnology(technology);
 
-        lista = produtoDao.findBytecnologia(tecnologia);
-        
-        return new Gson().toJson(lista);
+        try {
+            return Response.ok(new Gson().toJson(list)).build();
+        }catch (Exception e){
+            return Response.serverError().status(HttpStatus.BAD_REQUEST_400.getStatusCode(), e.getMessage()).build();
+        }
     }
 
     @GET
-    @Path("mercadoalvo/{mercadoAlvo}")
+    @Path("targetmarket/{targetmarket}")
     @Produces(MediaType.APPLICATION_JSON)
-    public String getByMercadoAlvo(@PathParam("mercadoAlvo") String mercadoAlvo) {
+    public Response getByTargetMarket(@PathParam("targetmarket") String targetmarket) {
 
-        List<Produto> lista = new ArrayList<>();
+        List<Product> list = productDao.findByTargetMarket(targetmarket);
 
-        ProdutoDao produtoDao = AbstractDaoFactory.getProdutoDao();
-
-        lista = produtoDao.findByMercadoAlvo(mercadoAlvo);
-        
-        return new Gson().toJson(lista);
+        try {
+            return Response.ok(new Gson().toJson(list)).build();
+        }catch (Exception e){
+            return Response.serverError().status(HttpStatus.BAD_REQUEST_400.getStatusCode(), e.getMessage()).build();
+        }
     }
 }

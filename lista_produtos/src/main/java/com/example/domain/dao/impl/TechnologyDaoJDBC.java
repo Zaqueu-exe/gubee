@@ -1,7 +1,7 @@
 package com.example.domain.dao.impl;
 
-import com.example.domain.dao.daoAbstract.TecnologiaDao;
-import com.example.domain.entities.Tecnologia;
+import com.example.domain.dao.daoAbstract.TechnologyDao;
+import com.example.domain.entities.Technology;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,15 +10,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TecnologiaDaoJDBC implements TecnologiaDao {
+public class TechnologyDaoJDBC implements TechnologyDao {
     private Connection conn = null;
 
-    public TecnologiaDaoJDBC(Connection conn) {
+    public TechnologyDaoJDBC(Connection conn) {
         this.conn = conn;
     }
 
     @Override
-    public void inserir(Tecnologia tecnologia) {
+    public void insert(Technology tecnologia) {
         String sql = "INSERT INTO tecnologia " +
                 "(nome) " +
                 "VALUES (?)";
@@ -26,7 +26,7 @@ public class TecnologiaDaoJDBC implements TecnologiaDao {
         try (PreparedStatement pstm = conn.prepareStatement(sql)) {
             conn.setAutoCommit(false);
 
-            pstm.setString(1, tecnologia.getNome());
+            pstm.setString(1, tecnologia.getName());
             pstm.executeUpdate();
 
             conn.commit();
@@ -41,14 +41,14 @@ public class TecnologiaDaoJDBC implements TecnologiaDao {
     }
 
     @Override
-    public List<Tecnologia> findAll() {
+    public List<Technology> findAll() {
         String sql = "SELECT * FROM tecnologia";
 
-        List<Tecnologia> tecnologias = new ArrayList<>();
+        List<Technology> technologies = new ArrayList<>();
         try (PreparedStatement pstm = conn.prepareStatement(sql)) {
             try (ResultSet rset = pstm.executeQuery()) {
                 while (rset.next()) {
-                    tecnologias.add(new Tecnologia(rset.getLong("id"), rset.getString("nome")));
+                    technologies.add(new Technology(rset.getLong("id"), rset.getString("nome")));
                 }
             } catch (SQLException e1) {
                 throw new RuntimeException(e1.getMessage());
@@ -57,6 +57,6 @@ public class TecnologiaDaoJDBC implements TecnologiaDao {
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage());
         }
-        return tecnologias;
+        return technologies;
     }
 }

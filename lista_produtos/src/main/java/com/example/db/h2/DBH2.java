@@ -1,11 +1,11 @@
-package com.example.db;
+package com.example.db.h2;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.*;
 import java.util.Properties;
 
-public class DB {
+public class DBH2 {
     private  static Connection conn = null;
 
     public static Connection getConnection(){
@@ -22,7 +22,7 @@ public class DB {
     }
 
     private static Properties loadProperties(){
-        try(FileInputStream fs = new FileInputStream("src/main/resources/db.properties")){
+        try(FileInputStream fs = new FileInputStream("src/main/resources/dbh2.properties")){
             Properties props = new Properties();
             props.load(fs);
             return props;
