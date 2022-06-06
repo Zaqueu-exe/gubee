@@ -1,8 +1,6 @@
 package com.example;
 
 import com.example.db.h2.StartDataBaseH2;
-import com.example.domain.entities.Product;
-import com.example.domain.entities.Technology;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
@@ -25,8 +23,8 @@ public class Main {
      * @throws IOException
      */
     public static void main(String[] args) throws IOException, SQLException {
-        StartDataBaseH2 t = new StartDataBaseH2();
-        t.initDataBase();
+        StartDataBaseH2 h2 = new StartDataBaseH2();
+        h2.initDataBase();
         final HttpServer server = startServer();
         System.out.println(String.format("Jersey app started with endpoints available at "
                 + "%s%nHit Ctrl-C to stop it...", BASE_URI));

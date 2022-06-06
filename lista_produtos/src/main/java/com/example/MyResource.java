@@ -21,7 +21,7 @@ public class MyResource {
 
     private ProductDao productDao = MakeDao.createDaoJDBC().getProductDao();
 
-    @GET
+    /*@GET
     @Path("technologies/{technology}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAll(@PathParam("technology") String name) {
@@ -32,7 +32,15 @@ public class MyResource {
         } catch (Exception e) {
             return Response.serverError().status(HttpStatus.BAD_REQUEST_400.getStatusCode(), e.getMessage()).build();
         }
+    }*/
+    @GET
+    @Path("technologies/{technology}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Product getAll(@PathParam("technology") String name) {
+        Product p = Product.builder().id(4L).name("aaaa").description("todos").build();
+        return p;
     }
+
 
     @GET
     @Path("targetmarket/{targetmarket}")
