@@ -21,26 +21,21 @@ public class MyResource {
 
     private ProductDao productDao = MakeDao.createDaoJDBC().getProductDao();
 
-    /*@GET
-    @Path("technologies/{technology}")
+    @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getAll(@PathParam("technology") String name) {
+    public Response getAll() {
+        List<Product> list = productDao.findAll();
+        return Response.status(200).entity(list).build();
+    }
 
-        List<Product> list = productDao.findByTechnology(name);
-        try {
-            return Response.ok(new Gson().toJson(list)).build();
-        } catch (Exception e) {
-            return Response.serverError().status(HttpStatus.BAD_REQUEST_400.getStatusCode(), e.getMessage()).build();
-        }
-    }*/
     @GET
     @Path("technologies/{technology}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Product getAll(@PathParam("technology") String name) {
-        Product p = Product.builder().id(4L).name("aaaa").description("todos").build();
-        return p;
-    }
+    public Response getByTechology(@PathParam("technology") String name) {
 
+        List<Product> list = productDao.findByTechnology(name);
+        return Response.status(200).entity(list).build();
+    }
 
     @GET
     @Path("targetmarket/{targetmarket}")
@@ -48,11 +43,6 @@ public class MyResource {
     public Response getByTargetMarket(@PathParam("targetmarket") String targetmarket) {
 
         List<Product> list = productDao.findByTargetMarket(targetmarket);
-
-        try {
-            return Response.ok(new Gson().toJson(list)).build();
-        } catch (Exception e) {
-            return Response.serverError().status(HttpStatus.BAD_REQUEST_400.getStatusCode(), e.getMessage()).build();
-        }
+        return Response.status(200).entity(list).build();
     }
 }

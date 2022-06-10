@@ -3,7 +3,6 @@ package com.example.domain.entities;
 import lombok.*;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 @Data
 @Builder

@@ -2,6 +2,18 @@ table {
   width: 100%;
 }
 
+input {
+  width: 15%;
+  padding: 10px;
+  margin: 6px;
+}
+
+.filter-div {
+  margin: 20px;
+  padding: 5px;
+}
+
+
 .loading-spinner {
   padding: 25px;
   background: rgba(0, 0, 0, 0.15);

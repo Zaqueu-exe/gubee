@@ -1,27 +1,58 @@
 <mat-card>
+
+  <div class="filter-div">
+    <div>
+      <input
+        type="text"
+        class="input"
+        placeholder="Procurar por tecnologia"
+        (blur)="saveNameTechnology(campoTechnology.value)"
+        #campoTechnology
+      />
+      <button mat-raised-button color="primary" (click)="findByTechnolgy()">
+        Procurar
+      </button>
+    </div>
+
+    <div>
+      <input
+        type="text"
+        class="input"
+        placeholder="Procurar por mercado alvo"
+        (blur)="saveNameTargetMarket(campoTargetMarket.value)"
+        #campoTargetMarket
+      />
+      <button mat-raised-button color="primary" (click)="findByTargetMarket()">
+        Procurar
+      </button>
+    </div>
+    <button mat-raised-button color="primary" (click)="findAll()">
+      Listar todos os produtos
+    </button>
+  </div>
+
   <mat-toolbar color="primary"> Produtos </mat-toolbar>
 
   <div *ngIf="products$ | async as products; else loading">
     <table mat-table [dataSource]="products" class="mat-elevation-z8">
-      <!--- Note that these columns can be defined in any order.
-          The actual rendered columns are set as a property on the row definition" -->
-
-      <!-- Position Column -->
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef>Produto</th>
         <td mat-cell *matCellDef="let element">{{ element.name }}</td>
       </ng-container>
 
-      <!-- Name Column -->
       <ng-container matColumnDef="targetMarket">
         <th mat-header-cell *matHeaderCellDef>Mercado alvo</th>
         <td mat-cell *matCellDef="let element">{{ element.targetMarket }}</td>
       </ng-container>
 
-      <!-- Weight Column -->
       <ng-container matColumnDef="description">
         <th mat-header-cell *matHeaderCellDef>Descrição</th>
         <td mat-cell *matCellDef="let element">{{ element.description }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="technologies">
+        <th mat-header-cell *matHeaderCellDef>Tecnologias</th>
+        <td mat-cell *matCellDef="let element">{{ element.technologies }}</td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

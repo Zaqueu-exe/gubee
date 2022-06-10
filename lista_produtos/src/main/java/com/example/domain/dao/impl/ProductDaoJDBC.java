@@ -44,6 +44,27 @@ public class ProductDaoJDBC implements ProductDao {
     }
 
     @Override
+    public List<Product> findAll() {
+        String sql = "SELECT * FROM produto";
+
+        List<Product> list = new ArrayList<>();
+        try (PreparedStatement pstm = conn.prepareStatement(sql)) {
+            try (ResultSet rset = pstm.executeQuery()) {
+                while (rset.next()) {
+                    Product product = this.instantiationProduct(rset);
+                    product.setTechnologies(this.productUseTechnology(product.getId()));
+                    list.add(product);
+                }
+                return list;
+            } catch (SQLException e) {
+                throw new RuntimeException(e.getMessage());
+            }
+        } catch (SQLException e1) {
+            throw new RuntimeException(e1.getMessage());
+        }
+    }
+
+    @Override
     public void insertTechnologyInProduct(Product product, Technology technology) {
         String sql = "INSERT INTO produtousetecnologia " +
                 "(produto_id, tecnologia_id) " +
