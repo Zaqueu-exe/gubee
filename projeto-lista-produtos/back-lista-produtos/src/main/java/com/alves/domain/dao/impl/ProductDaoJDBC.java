@@ -18,7 +18,6 @@ public class ProductDaoJDBC implements ProductDao {
         this.conn = conn;
     }
 
-    //inseri produto no banco
     @Override
     public void insert(Product product) {
         String sql = "INSERT INTO product " +
@@ -44,7 +43,6 @@ public class ProductDaoJDBC implements ProductDao {
         }
     }
 
-    //busca todas os produtos
     @Override
     public List<Product> findAll() {
         String sql = "SELECT * FROM product";
@@ -66,7 +64,6 @@ public class ProductDaoJDBC implements ProductDao {
         }
     }
 
-    //inseri tecnologia em um produto
     @Override
     public void insertTechnologyInProduct(Product product, Technology technology) {
         String sql = "INSERT INTO productusetechnology " +
@@ -83,8 +80,6 @@ public class ProductDaoJDBC implements ProductDao {
         }
     }
 
-
-    //procura por tecnologia
     @Override
     public List<Product> findByTechnology(String technologyName) {
         String sql = "SELECT * FROM product " +
@@ -113,7 +108,6 @@ public class ProductDaoJDBC implements ProductDao {
         return products;
     }
 
-    //procura por mercado alvo
     @Override
     public List<Product> findByTargetMarket(String targetMarket) {
         String sql = "SELECT * FROM product WHERE targetmarket like ?";
@@ -136,7 +130,6 @@ public class ProductDaoJDBC implements ProductDao {
         return list;
     }
 
-    //instancia produtos
     private Product instantiationProduct(ResultSet rset) throws SQLException {
         Product product = Product.builder()
                 .id(rset.getLong("id"))
@@ -148,7 +141,6 @@ public class ProductDaoJDBC implements ProductDao {
         return product;
     }
 
-    //instancia tecnologia
     private Technology instatiationTechnology(ResultSet rset) throws SQLException {
         Technology technology = Technology.builder()
                 .id(rset.getLong("technology.id"))
@@ -158,7 +150,6 @@ public class ProductDaoJDBC implements ProductDao {
         return technology;
     }
 
-    // Saber todas as tecnologias de um produto pelo id dele
     private List<Technology> productUseTechnology(Long id) {
         String sql = "SELECT * FROM technology " +
                 "INNER JOIN productusetechnology " +

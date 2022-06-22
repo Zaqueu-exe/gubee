@@ -21,6 +21,8 @@ export class ProductsService {
       );
   }
 
+
+
   getByTechnology(name: String): Observable<any> {
     return this.httpClient.get<Product[]>(`${this.API}/technologies/${name}`)
     .pipe(

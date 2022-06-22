@@ -1,4 +1,4 @@
 export interface Technology {
     _id: String;
-    name: String;
+    nam: String;
 }

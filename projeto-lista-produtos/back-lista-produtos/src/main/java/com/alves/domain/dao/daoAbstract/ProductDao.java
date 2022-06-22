@@ -7,12 +7,9 @@ import java.util.List;
 public interface ProductDao {
 
     void insert(Product product);
-
     List<Product> findAll();
     void insertTechnologyInProduct(Product product, Technology technology);
-
     List<Product> findByTechnology(String technologyName);
-
     List<Product> findByTargetMarket(String targetMarket);
 
 }
