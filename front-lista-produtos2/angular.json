@@ -1,16 +1,13 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "cli": {
-    "analytics": "f1bf13b6-f358-469a-aed6-48025a767fea"
-  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "front-lista-produto": {
+    "front-lista-produtos2": {
       "projectType": "application",
       "schematics": {
-        "@schematics/angular:application": {
-          "strict": true
+        "@schematics/angular:component": {
+          "style": "scss"
         }
       },
       "root": "",
@@ -20,18 +17,18 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/front-lista-produto",
+            "outputPath": "dist/front-lista-produtos2",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": []
           },
@@ -72,10 +69,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "front-lista-produto:build:production"
+              "browserTarget": "front-lista-produtos2:build:production"
             },
             "development": {
-              "browserTarget": "front-lista-produto:build:development"
+              "browserTarget": "front-lista-produtos2:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -83,7 +80,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "front-lista-produto:build"
+            "browserTarget": "front-lista-produtos2:build"
           }
         },
         "test": {
@@ -93,13 +90,13 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
+            "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": []
           }
@@ -107,5 +104,7 @@
       }
     }
   },
-  "defaultProject": "front-lista-produto"
+  "cli": {
+    "analytics": "af05a891-dd9e-437f-a514-ce60775c45f1"
+  }
 }

@@ -7,13 +7,13 @@ import { delay, first, tap, Observable } from 'rxjs';
 })
 export class ProductsService {
 
-  private readonly API = 'products';
+  private readonly API = 'http://localhost:8080/products';
 
   constructor(private httpClient: HttpClient) {
   }
 
   listAll() {
-    return this.httpClient.get<Product[]>(this.API)
+    return this.httpClient.get<Product[]>(`${this.API}/all`)
       .pipe(
         first(),
         delay(150),

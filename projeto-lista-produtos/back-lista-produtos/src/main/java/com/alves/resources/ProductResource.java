@@ -1,4 +1,4 @@
-package com.alves;
+package com.alves.resources;
 
 import java.util.List;
 import javax.ws.rs.*;
@@ -12,18 +12,18 @@ import com.alves.domain.entities.Product;
 
 
 @Path("products")
-@Produces({MediaType.APPLICATION_JSON})
-@Consumes({MediaType.APPLICATION_JSON})
-public class MyResource {
+public class ProductResource {
 
     private ProductDao productDao = MakeDao.createDaoJDBC().getProductDao();
 
 
-    public MyResource() {
+    public ProductResource() {
         StartDataBaseH2 h2 = new StartDataBaseH2();
     }
 
     @GET
+    @Path("all")
+    @Produces({MediaType.APPLICATION_JSON})
     public Response getAll() {
         List<Product> list = productDao.findAll();
         return Response.status(200).entity(list).build();

@@ -1,0 +1,57 @@
+<div class="p-3 mb-2 bg-secondary text-white">
+  <div>Filtros para pesquisa</div>
+  <nav class="navbar">
+    <div class="container-fluid">
+      <a class="navbar-brand"></a>
+      <div>
+        <input
+          class="form-control me-2"
+          type="search"
+          placeholder="Mercado alvo"
+          aria-label="Search"
+          #targetMarket
+        />
+        <button
+          class="btn btn-primary"
+          (click)="findProductByTargetMarket(targetMarket.value)"
+        >
+          Search
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div *ngIf="technologies$ |async as technologies">
+    <div class="form-check form-check-inline" *ngFor="let technology of technologies ">
+      <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+      <label class="form-check-label" for="inlineCheckbox1">{{technology.name}}</label>
+    </div>
+  </div>
+</div>
+
+<table class="table table-dark table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Descrição</th>
+      <th scope="col">Mercado alvo</th>
+      <th scope="col">Tecnologias</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="products$ | async as products">
+    <tr *ngFor="let product of products">
+      <th scope="row">{{ product.id }}</th>
+      <td>{{ product.name }}</td>
+      <td>{{ product.description }}</td>
+      <td>{{ product.targetMarket }}</td>
+      <td>
+        <tr *ngFor="let technology of product.technologies">
+          {{
+            technology.name
+          }}
+        </tr>
+      </td>
+    </tr>
+  </tbody>
+</table>
